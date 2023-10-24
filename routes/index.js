@@ -13,9 +13,16 @@ const messageSchema = new Schema({
 
 const myModel = mongoose.model('messages', messageSchema); 
 
+
+
+
+
+
+
 async function tryGetDocument(){
   try{
     let result = await myModel.findOne(); 
+    console.log(result);
   }catch(err){
     //Yo mama
   }
@@ -32,12 +39,25 @@ async function tryAddDocument(user, content){
 tryGetDocument();
 
 async function tryGetAllDocument(){
-  try{
-    let result = await myModel.find().sort({date:-1}); 
-    return result; 
+  try {
+    let result = await myModel.find().sort({ date: -1 });
+    
+    for (let doc of result) {
+        let plainDoc = doc.toObject();
+        plainDoc.date = formatDate(doc.date);
+        result[result.indexOf(doc)] = plainDoc;
+    }
+
+    return result;
   }catch(err){
     //yeet
   }
+}
+
+function formatDate(inputDate) {
+  const parts = new Date(inputDate).toString().split(' '); 
+  parts.shift(); // Removes the weekday
+  return parts.slice(0, 4).join(' '); // Returns the next 4 items combined
 }
 
 
@@ -46,10 +66,11 @@ async function tryGetAllDocument(){
 router.get('/', async function(req, res, next) {
   try{
     let result = await tryGetAllDocument(); 
-    res.render('index', { title: "Mini Messageboard", messages: result })
+    let messageUser = req.query.messageUser || '';
+    res.render('index', { title: "Mini Messageboard", messages: result , messageUser: messageUser })
   }
   catch(err){
-    
+
   }
 });
 
@@ -57,17 +78,17 @@ router.get('/new', function(req, res, next) {
   res.render('form')
 });
 
-router.post("/new", function(req,res,next){
+router.get("/", function(req, res, next) {
+  let messageUser = req.query.messageUser || '';
+  res.render('index', { messageUser: messageUser });
+});
 
+router.post("/", function(req,res,next){
   console.log(req); 
   let messageText = req.body.messageText; 
   let messageUser = req.body.messageUser; 
   tryAddDocument(messageUser,messageText); 
-  res.redirect('/');
-}); 
-
-router.post("/", function(req,res,next){
-  res.redirect('/new');
+  res.redirect(`/?messageUser=${messageUser}`);
 }); 
 
 

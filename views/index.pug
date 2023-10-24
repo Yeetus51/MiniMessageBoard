@@ -1,15 +1,18 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  form(method="POST" action="/")
-    button(type="submit") Create Your message
+  div(class="container")
+    div(class="title")
+      h1= title
+      form(method="POST" action="/", class="create-post")
+        input(type="text",name = "messageUser", placeholder  ="Username...", id="author", required=true, class="input-username", value=messageUser)
+        input(type="textarea",name="messageText", placeholder = "Message to the world....", id = "message", required=true,class="input-content") 
+        button(type="submit") Send
 
 
-  
-  for document in messages 
-    div(style="margin: 20px 0px; border:solid 2px black; padding: 0 10px") 
-      h2 #{document.user_id} Posted:
-      p #{document.message} 
-      p #{document.date} 
+    div(class="message-container")
+      for document in messages 
+        div(class="message") 
+          p(class="sender") - #{document.user_id}
+          p(class="message-content") #{document.message} 
+          p(class="date") #{document.date} 
