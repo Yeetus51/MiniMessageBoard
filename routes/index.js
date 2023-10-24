@@ -3,18 +3,6 @@ const router = express.Router();
 const mongoose = require("../mongoose.js");
 const { Collection } = require('mongoose');
 
-// const messages = [
-//   {
-//     text: "Hi there!",
-//     user: "Amando",
-//     added: new Date()
-//   },
-//   {
-//     text: "Hello World!",
-//     user: "Charles",
-//     added: new Date()
-//   }
-// ];
 
 const Schema = mongoose.Schema;
 const messageSchema = new Schema({
