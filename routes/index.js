@@ -78,7 +78,13 @@ router.get("/", function(req, res, next) {
   res.render('index', { messageUser: messageUser });
 });
 
-router.post("/", function(req,res,next){
+router.post("/delete", async function(req,res,next){
+  const documentId = req.body.documentId;
+  let result = await myModel.deleteOne({_id: new mongoose.Types.ObjectId(documentId)});
+  res.redirect(`/`);
+}); 
+
+router.post("/new", function(req,res,next){
   console.log(req); 
   let messageText = req.body.messageText; 
   let messageUser = req.body.messageUser; 

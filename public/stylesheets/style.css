@@ -59,6 +59,15 @@ body{
 .title h1{
     align-self: center;
 }
+.delete{
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: rgba(212, 83, 83, 0.582);
+    background-color: white;
+    border: 0;
+    border-radius: 25px;
+    padding: 0 5px;
+}
 
 
 
