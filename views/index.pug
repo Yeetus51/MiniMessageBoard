@@ -5,5 +5,5 @@ block content
   p Welcome to #{title}
 
   ul
-    for message in messages 
-      li #{message.text}, #{message.user}, #{message.added} 
+    for document in messages 
+      li #{document.message}, by: #{document.user_id}, #{document.date} 
