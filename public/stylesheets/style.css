@@ -1,8 +1,101 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }
 
-a {
-  color: #00B7FF;
+body{
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+
+    background-color: #eee;
+
 }
+
+.container{
+    min-width: 470px;
+    width: 600px;
+    border: 0;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.create-post{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+.create-post> *{
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: solid 2px rgba(0, 0, 0, 0.288);
+}
+.create-post button{
+    background-color: rgb(49, 209, 0);;
+}
+.input-username{
+    width: 20%;
+
+}
+.input-content{
+    flex: 1;
+
+}
+
+
+.message-container, .title{
+
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+}
+.title h1{
+    align-self: center;
+}
+
+
+
+.message{
+    background-color: rgb(153, 255, 122);
+    padding: 5px 10px;
+    border-radius: 15px;
+    border-top-left-radius: 0;
+    
+    display: inline-flex;
+    flex-direction: column;
+
+
+
+}
+
+.sender{
+    font-weight: 800;
+    font-size: 0.8rem;
+}
+
+.date{
+    color: rgba(0, 0, 0, 0.685);
+    font-size: 0.7rem;
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+    *{
+        font-size: 23px;
+    }
+
+    .container{
+        width: 100%;
+    }
+
+    .create-post> *{
+        padding: 20px 20px;
+    }
+  }

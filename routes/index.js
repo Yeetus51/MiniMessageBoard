@@ -14,11 +14,6 @@ const messageSchema = new Schema({
 const myModel = mongoose.model('messages', messageSchema); 
 
 
-
-
-
-
-
 async function tryGetDocument(){
   try{
     let result = await myModel.findOne(); 
@@ -88,6 +83,7 @@ router.post("/", function(req,res,next){
   let messageText = req.body.messageText; 
   let messageUser = req.body.messageUser; 
   tryAddDocument(messageUser,messageText); 
+  io.emit('messagePosted', { /* comment data */ });
   res.redirect(`/?messageUser=${messageUser}`);
 }); 
 
