@@ -14,26 +14,43 @@ const messageSchema = new Schema({
 const myModel = mongoose.model('messages', messageSchema); 
 
 async function tryGetDocument(){
-  let result = await myModel.findOne(); 
+  try{
+    let result = await myModel.findOne(); 
+  }catch(err){
+    //Yo mama
+  }
 }
 
 async function tryAddDocument(user, content){
-  let result = await myModel.insertMany({user_id:user, message:content, date:new Date()});
-  return result; 
+  try{
+    let result = await myModel.insertMany({user_id:user, message:content, date:new Date()});
+    return result; 
+  }catch(err){
+
+  }
 }
 tryGetDocument();
 
 async function tryGetAllDocument(){
-  let result = await myModel.find().sort({date:-1}); 
-  return result; 
+  try{
+    let result = await myModel.find().sort({date:-1}); 
+    return result; 
+  }catch(err){
+    //yeet
+  }
 }
 
 
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  let result = await tryGetAllDocument(); 
-  res.render('index', { title: "Mini Messageboard", messages: result })
+  try{
+    let result = await tryGetAllDocument(); 
+    res.render('index', { title: "Mini Messageboard", messages: result })
+  }
+  catch(err){
+    
+  }
 });
 
 router.get('/new', function(req, res, next) {
