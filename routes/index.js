@@ -36,7 +36,7 @@ async function tryAddDocument(user, content){
 tryGetDocument();
 
 async function tryGetAllDocument(){
-  let result = await myModel.find(); 
+  let result = await myModel.find().sort({date:-1}); 
   return result; 
 }
 

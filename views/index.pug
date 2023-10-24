@@ -7,6 +7,9 @@ block content
     button(type="submit") Create Your message
 
 
-  ul
-    for document in messages 
-      li #{document.message}, by: #{document.user_id}, #{document.date} 
+  
+  for document in messages 
+    div(style="margin: 20px 0px; border:solid 2px black; padding: 0 10px") 
+      h2 #{document.user_id} Posted:
+      p #{document.message} 
+      p #{document.date} 
