@@ -33,6 +33,7 @@ body{
     padding: 10px 15px;
     border-radius: 25px;
     border: solid 2px rgba(0, 0, 0, 0.288);
+    min-width: 100px;
 }
 .create-post button{
     background-color: rgb(49, 209, 0);;
@@ -97,5 +98,6 @@ body{
 
     .create-post> *{
         padding: 20px 20px;
+        font-size: 0.8rem;
     }
   }
