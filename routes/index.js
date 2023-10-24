@@ -27,21 +27,16 @@ const myModel = mongoose.model('messages', messageSchema);
 
 async function tryGetDocument(){
   let result = await myModel.findOne(); 
-  console.log("Document Recived ?"); 
-  console.log(result); 
 }
 
 async function tryAddDocument(user, content){
   let result = await myModel.insertMany({user_id:user, message:content, date:new Date()});
-  console.log(result); 
   return result; 
 }
 tryGetDocument();
 
 async function tryGetAllDocument(){
   let result = await myModel.find(); 
-  console.log("Documents Recived ?"); 
-  console.log(result); 
   return result; 
 }
 
@@ -65,6 +60,12 @@ router.post("/new", function(req,res,next){
   tryAddDocument(messageUser,messageText); 
   res.redirect('/');
 }); 
+
+router.post("/", function(req,res,next){
+  res.redirect('/new');
+}); 
+
+
 
 module.exports = router;
 
