@@ -4,7 +4,7 @@ block content
   div(class="container")
     div(class="title")
       h1= title
-      form(method="POST" action="/new", class="create-post")
+      form(method="POST" action="", class="create-post")
         input(type="text",name = "messageUser", placeholder  ="Username...", id="author", required=true, class="input-username", value=messageUser)
         input(type="textarea",name="messageText", placeholder = "Message to the world....", id = "message", required=true,class="input-content") 
         button(type="submit") Send
@@ -16,6 +16,6 @@ block content
           p(class="sender") - #{document.user_id}
           p(class="message-content") #{document.message} 
           p(class="date") #{document.date} 
-          form(method="POST" action="/delete")
+          form(method="POST" action="/")
             input(type="hidden" name="documentId" value=document._id)
             button(type="submit" class="delete") Delete
